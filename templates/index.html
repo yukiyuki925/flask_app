@@ -1,5 +1,6 @@
 {% extends "base.html" %} {% block content %}
 <h1>メモアプリ</h1>
+<a href="/regist" role="button">新規登録</a>
 {% if memo_list == [] %}
 <p>メモは登録されていません</p>
 {% else %}
@@ -7,11 +8,13 @@
   <tr>
     <th>title</th>
     <th>memo</th>
+    <th></th>
   </tr>
   {% for memo in memo_list %}
   <tr>
     <td>{{memo.title}}</td>
     <td>{{memo.body}}</td>
+    <td><a href="/{{memo.id}}/edit" role="button">編集</a></td>
   </tr>
   {% endfor %}
 </table>
