@@ -2,9 +2,17 @@
 <h1>メモアプリ</h1>
 {% if memo_list == [] %}
 <p>メモは登録されていません</p>
-{% else %} {% for memo in memo_list %}
-<article>
-  <h2>{{memo.title}}</h2>
-  <p>{{memo.body}}</p>
-</article>
-{% endfor %} {% endif %} {% endblock %}
+{% else %}
+<table border="1">
+  <tr>
+    <th>title</th>
+    <th>memo</th>
+  </tr>
+  {% for memo in memo_list %}
+  <tr>
+    <td>{{memo.title}}</td>
+    <td>{{memo.body}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %} {% endblock %}

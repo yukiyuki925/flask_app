@@ -4,8 +4,8 @@ from flask import render_template
 app = Flask(__name__)
 
 memo_list = [
-   {"title" : "test01", "body" : "hello"},
-   {"title" : "test02", "body" : "good"}
+  {"title" : "test01", "body" : "hello"},
+  {"title" : "test02", "body" : "good"}
 ]
 
 @app.route("/")
