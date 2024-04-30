@@ -24,7 +24,6 @@ def regist():
 
 @app.route("/<id>/edit", methods=['GET','POST'])
 def edit(id):
-
   if request.method == 'POST':
     # 画面から登録情報の取得
     title = request.form.get('title')
@@ -36,9 +35,21 @@ def edit(id):
   
   post = get_db().execute("select id,title,body from memo where id=?" ,(id,)).fetchone()
   return render_template('edit.html', post=post)
+  
+@app.route("/<id>/delete",methods=['GET','POST'])
+def delete(id):
+  if request.method == 'POST':
+    # 画面から登録情報の取得
+    db = get_db()
+    db.execute("delete from memo where id=?",[id])
+    db.commit()
+    return redirect('/')
+  
+  post = get_db().execute("select id,title,body from memo where id=?" ,(id,)).fetchone()
+  return render_template('delete.html', post=post)
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host="0.0.0.0")
 
 def connect_db():
   rv = sqlite3.connect(DATABASE)
