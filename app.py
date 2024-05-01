@@ -2,8 +2,19 @@ from flask import Flask
 from flask import render_template,g,redirect,request
 import sqlite3
 DATABASE="flaskmemo.db"
+from flask_login import UserMixin, LoginManager
 
 app = Flask(__name__)
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+class User(UserMixin):
+  def __init__(self,userid):
+    self.id = userid
+
+@login_manager.user_loader
+def load_user(userid):
+  return User(userid)
 
 @app.route("/")
 def top():
